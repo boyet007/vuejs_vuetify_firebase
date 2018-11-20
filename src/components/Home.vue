@@ -48,7 +48,7 @@ export default {
     .title {
         position: absolute;
         bottom: 50px;
-        background: rgba(0,0,0,0,5);
+        background-color: rgba(0,0,0,0,5);
         color:white;
         font-size:2em;
         padding:20px;
