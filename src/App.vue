@@ -14,7 +14,7 @@
         </v-list>
       </v-navigation-drawer>
 
-      <v-toolbar class="light-blue accent-4" dark>
+      <v-toolbar class="deep-purple accent-4" dark>
         <v-toolbar-side-icon class="hidden-sm-and-up"
          @click.native.stop = "sideNav = !sideNav "></v-toolbar-side-icon>
         <v-toolbar-title>
@@ -28,7 +28,6 @@
           </v-btn>
         </v-toolbar-items>
       </v-toolbar>
-
       <main>
         <router-view></router-view>
       </main>
