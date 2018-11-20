@@ -18,11 +18,11 @@
                                         <div>17th July 2017</div>
                                     </div>
                                 </v-card-title>
-                                <v-card-action>
+                                <v-card-actions>
                                     <v-btn flat>
                                         <v-icon left light>arrow_forward</v-icon>    
                                         View Meetup</v-btn>
-                                </v-card-action>
+                                </v-card-actions>
                             </v-flex>
                         </v-layout>
                     </v-container>

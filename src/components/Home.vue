@@ -12,7 +12,11 @@
             <v-flex xs12>
                 <v-carousel>
                     <v-carousel-item v-for="meetup in meetups" 
-                        v-bind:src="meetup.imageUrl" :key="meetup.id" reverse-transition="fade" transition="fade">
+                        v-bind:src="meetup.imageUrl" 
+                        :key="meetup.id" 
+                        @click="onLoadMeetup(meetup.id)"
+                        reverse-transition="fade" 
+                        transition="fade">
                         <div class="title">
                             {{ meetup.title }}
                         </div>
@@ -39,6 +43,11 @@ export default {
                 { imageUrl: 'https://images.musement.com/default/0001/49/thumb_48756_default_header.jpeg', 
                     id: 'klasjfiejifej21', title: 'Meetup in Paris'}
             ]
+        }
+    },
+    methods: {
+        onLoadMeetup(id) {
+            this.$router.push('/meetups/' + id)
         }
     }
 }
