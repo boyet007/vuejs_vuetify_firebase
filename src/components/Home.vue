@@ -35,19 +35,14 @@
 
 <script>
 export default {
-    data () {
-        return {
-            meetups: [
-                { imageUrl: 'https://images.musement.com/default/0001/49/thumb_48754_default_header.jpeg', 
-                    id: 'jfiejeejeijf23', title: 'Meetup in New York'},
-                { imageUrl: 'https://images.musement.com/default/0001/49/thumb_48756_default_header.jpeg', 
-                    id: 'klasjfiejifej21', title: 'Meetup in Paris'}
-            ]
-        }
-    },
     methods: {
         onLoadMeetup(id) {
             this.$router.push('/meetups/' + id)
+        }
+    },
+    computed: {
+        meetups: function() {
+            return this.$store.getters.featuredMeetups
         }
     }
 }

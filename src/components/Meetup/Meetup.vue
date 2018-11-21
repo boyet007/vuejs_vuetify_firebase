@@ -4,14 +4,14 @@
             <v-flex xs12>
                 <v-card >
                     <v-card-title>
-                        <h3 class="primary--text">My Meetup</h3> 
+                        <h3 class="primary--text">{{ meetup.title }}</h3> 
                     </v-card-title>
                      <v-img
-                        src="https://images.musement.com/default/0001/49/thumb_48754_default_header.jpeg"
+                        :src="meetup.imageUrl"
                            height="400px">
                     </v-img>
                     <v-card-text>
-                        <div class="info--text">17th July 2014 - Where it take places</div>
+                        <div class="info--text">{{ meetup.date }} - Where it take places</div>
                         <div>Lorem Ipsum is simply dummy 
                             text of the printing and typesetting industry.
                              Lorem Ipsum has been the industry's standard dummy
@@ -32,3 +32,15 @@
         </v-layout>
     </v-container>
 </template>
+
+<script>
+export default {
+    props: ['id'],
+    computed: {
+        meetup: function () {
+            return this.$store.getters.loadedMeetup(this.id)        
+        }
+    }
+}
+</script>
+
