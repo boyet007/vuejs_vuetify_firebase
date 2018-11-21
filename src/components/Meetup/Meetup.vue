@@ -4,15 +4,15 @@
             <v-flex xs12>
                 <v-card >
                     <v-card-title>
-                        <h3 class="primary--text">{{ meetup.title }}</h3> 
+                        <h3 v-if="meetup" class="primary--text">{{ meetup.title }}</h3> 
                     </v-card-title>
-                     <v-img
+                     <v-img v-if="meetup"
                         :src="meetup.imageUrl"
                            height="400px">
                     </v-img>
                     <v-card-text>
-                        <div class="info--text">{{ meetup.date }} - Where it take places</div>
-                        <div>Lorem Ipsum is simply dummy 
+                        <div v-if="meetup" class="info--text">{{ meetup.date }} - Where it take places</div>
+                        <div>Lorem Ipsum is simply dummyeee 
                             text of the printing and typesetting industry.
                              Lorem Ipsum has been the industry's standard dummy
                               text ever since the 1500s, when an unknown printer

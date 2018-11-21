@@ -14,12 +14,12 @@
                             <v-flex xs7 sm8 md9>
                                 <v-card-title primary-title>
                                     <div>
-                                        <h2 class="white--text">{{ meetup.title }}</h2>
+                                        <h2 class="yellow--text">{{ meetup.title }}</h2>
                                         <div>{{ meetup.date }}</div>
                                     </div>
                                 </v-card-title>
                                 <v-card-actions>
-                                    <v-btn flat :to="'/meetup/' + meetup.id">
+                                    <v-btn flat :to="'/meetups/' + meetup.id">
                                         <v-icon left light>arrow_forward</v-icon>    
                                         View Meetup</v-btn>
                                 </v-card-actions>
