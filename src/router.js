@@ -20,8 +20,8 @@ export default new Router({
       component: Home
     },
     {
-      path: '/meetup/:id',
-      name: 'Meetup',
+      path: '/meetups/:id',
+      name: 'Meetups',
       component: Meetup
     },
     {

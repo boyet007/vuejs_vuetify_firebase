@@ -10,7 +10,7 @@
         </v-layout>
         <v-layout row wrap class="mt-2">
             <v-flex xs12>
-                <v-carousel>
+                <v-carousel style="cursor: pointer">
                     <v-carousel-item v-for="meetup in meetups" 
                         v-bind:src="meetup.imageUrl" 
                         :key="meetup.id" 

@@ -6,10 +6,10 @@
                     <v-container fluid>
                         <v-layout row>
                             <v-flex xs5 sm4 md3>
-                            <v-card-media
+                            <v-img
                             src="https://images.musement.com/default/0001/49/thumb_48754_default_header.jpeg"
                                 height="130px"
-                            ></v-card-media>
+                            ></v-img>
                             </v-flex>
                             <v-flex xs7 sm8 md9>
                                 <v-card-title primary-title>
@@ -19,7 +19,7 @@
                                     </div>
                                 </v-card-title>
                                 <v-card-actions>
-                                    <v-btn flat>
+                                    <v-btn flat to="/meetups/1">
                                         <v-icon left light>arrow_forward</v-icon>    
                                         View Meetup</v-btn>
                                 </v-card-actions>

@@ -6,10 +6,10 @@
                     <v-card-title>
                         <h3 class="primary--text">My Meetup</h3> 
                     </v-card-title>
-                     <v-card-media
+                     <v-img
                         src="https://images.musement.com/default/0001/49/thumb_48754_default_header.jpeg"
                            height="400px">
-                    </v-card-media>
+                    </v-img>
                     <v-card-text>
                         <div class="info--text">17th July 2014 - Where it take places</div>
                         <div>Lorem Ipsum is simply dummy 
