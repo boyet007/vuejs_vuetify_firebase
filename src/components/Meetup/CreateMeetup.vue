@@ -28,6 +28,23 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
+                            <b>Choose a Date and Time</b>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row class="mb-2">
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-date-picker v-model="date"></v-date-picker>
+                            <p>{{ date }}</p>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-time-picker v-model="time"></v-time-picker>
+                            <p>{{ time }}</p>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
                             <v-text-field 
                                 name="imageUrl"
                                 label="Image URL"
@@ -63,13 +80,16 @@ export default {
             title: '',
             location: '',
             imageUrl: '',
-            description: ''
+            description: '',
+            date: now(),
+            time:  Date.now()
         }
     },
     computed: {
         formIsValid: function() {
             return this.title != '' && this.location != '' && this.imageUrl != '' && this.description != ''
-        }
+        },
+        submittableDateTime() {}
     },
     methods: {
         
@@ -82,7 +102,8 @@ export default {
                 location: this.location,
                 imageUrl: this.imageUrl,
                 description: this.description,
-                date: new Date()
+                date: this.date,
+                time: this.time
             }
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
