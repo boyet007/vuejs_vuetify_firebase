@@ -11,7 +11,7 @@
                            height="400px">
                     </v-img>
                     <v-card-text>
-                        <div v-if="meetup" class="info--text">{{ meetup.date }} - {{ meetup.location }}</div>
+                        <div v-if="meetup" class="info--text">{{ meetup.date | date }} - {{ meetup.location }}</div>
                         <div>{{ meetup.description }}
                         </div>
                     </v-card-text>
