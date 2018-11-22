@@ -11,13 +11,8 @@
                            height="400px">
                     </v-img>
                     <v-card-text>
-                        <div v-if="meetup" class="info--text">{{ meetup.date }} - Where it take places</div>
-                        <div>Lorem Ipsum is simply dummyeee 
-                            text of the printing and typesetting industry.
-                             Lorem Ipsum has been the industry's standard dummy
-                              text ever since the 1500s, when an unknown printer
-                               took a galley of type and scrambled it to make a type
-                                specimen book. It has survived not only five centuries,
+                        <div v-if="meetup" class="info--text">{{ meetup.date }} - {{ meetup.location }}</div>
+                        <div>{{ meetup.description }}
                         </div>
                     </v-card-text>
                     <v-card-actions>

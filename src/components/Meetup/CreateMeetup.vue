@@ -26,23 +26,7 @@
                             </v-text-field>
                         </v-flex>
                     </v-layout>
-                    <v-layout row>
-                        <v-flex xs12 sm6 offset-sm3>
-                            <b>Choose a Date and Time</b>
-                        </v-flex>
-                    </v-layout>
-                    <v-layout row class="mb-2">
-                        <v-flex xs12 sm6 offset-sm3>
-                            <v-date-picker v-model="date"></v-date-picker>
-                            <p>{{ date }}</p>
-                        </v-flex>
-                    </v-layout>
-                    <v-layout row>
-                        <v-flex xs12 sm6 offset-sm3>
-                            <v-time-picker v-model="time"></v-time-picker>
-                            <p>{{ time }}</p>
-                        </v-flex>
-                    </v-layout>
+                  
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field 
@@ -62,6 +46,25 @@
                             </v-textarea>
                         </v-flex>
                     </v-layout>
+
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <b>Choose a Date and Time</b>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row class="mb-2">
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-date-picker v-model="date" ></v-date-picker>
+                            <p>{{ date }}</p>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-time-picker v-model="time" ></v-time-picker>
+                            <p>{{ time }}</p>
+                        </v-flex>
+                    </v-layout>
+
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-btn :disabled="!formIsValid" type="submit"   class="primary">Create Meetup</v-btn>    
@@ -81,18 +84,31 @@ export default {
             location: '',
             imageUrl: '',
             description: '',
-            date: now(),
-            time:  Date.now()
+            date: null,
+            time: null
         }
     },
     computed: {
         formIsValid: function() {
             return this.title != '' && this.location != '' && this.imageUrl != '' && this.description != ''
         },
-        submittableDateTime() {}
+        submittableDateTime() {
+            const date = new Date(this.date)
+            if (typeof this.time === 'string') {
+                let hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+            } else {
+                date.setHours(this.time.getHours())
+                date.setMinutes(this.time.getMinutes())
+            }
+          
+            console.log(date)
+            return date
+        }
     },
     methods: {
-        
         onCreateMeetup() {
             if (!this.formIsValid) {
                 
@@ -102,12 +118,12 @@ export default {
                 location: this.location,
                 imageUrl: this.imageUrl,
                 description: this.description,
-                date: this.date,
-                time: this.time
+                //date: this.date,
+                //time: this.time
+                date: this.submittableDateTime
             }
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
-
         }
     }
 }
