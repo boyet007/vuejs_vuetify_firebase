@@ -1,5 +1,64 @@
 <template>
-    <div>
-        <p>The Sign Up page</p>
-    </div>
+    <v-container>
+        <v-layout>
+            <v-flex xs12 sm6 offset-sm3>
+                <v-card>
+                    <v-card-text>
+                        <v-container>
+                            <form>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-text-field name="email" label="Mail" 
+                                        v-model="email" type="email" id="email" required>
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-text-field name="password" label="Password" 
+                                        v-model="password" type="password" id="password" required>
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-text-field name="confirmPassword" label="Confirm Password" 
+                                        :rules="[comparePassword]" v-model="confirmPassword" type="password" id="confirmPassword">
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex xs12>
+                                        <v-btn type="submit">Sign up</v-btn>
+                                    </v-flex>
+                                </v-layout>
+                            </form>
+                        </v-container>
+                    </v-card-text>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
+
+<script>
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    },
+    computed: {
+        comparePassword: function() {
+            return this.password != this.confirmPassword ? 'Password do not match' : ''
+        }
+    },
+    methods: {
+        onSignup: function() {
+            console.log({email: this.email, password: this.password, confirmPassword: this.confirmPassword})
+        }
+    }
+}
+</script>
