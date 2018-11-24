@@ -10,6 +10,8 @@ Vue.config.productionTip = false
 Vue.filter('date', DateFilter)
 
 
+
+
 new Vue({
   router,
   store,
