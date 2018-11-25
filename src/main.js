@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 import * as firebase from 'firebase'
+
 import DateFilter from './filters/date'
 import AlertCmp from './components/Shared/Alert.vue'
 

@@ -56,14 +56,14 @@ export const store = new Vuex.Store({
                 commit('setLoading', true)
             }) 
         },
-        createMeetup ({commit}, payload) {
+        createMeetup ({commit, getters}, payload) {
             const meetup = {
                 title: payload.title,
                 location: payload.location,
                 imageUrl: payload.imageUrl,
                 description: payload.description,
                 date: payload.date.toISOString(),
-                // id: 'jfiejfeiijefjeif'
+                
             }
             firebase.database().ref('meetups').push(meetup)
                 .then((data) => {
@@ -121,10 +121,10 @@ export const store = new Vuex.Store({
         }
     },
     getters: {
-        loadedMeetups (state) {
+        loadedMeetups (state) {            
             return state.loadedMeetups.sort((meetupA, meetupB) => {
                 return meetupA.date > meetupB.date
-            })
+            })   
         },
         loadedMeetup (state) {
             return (meetupId) => {

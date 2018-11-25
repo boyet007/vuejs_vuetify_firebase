@@ -83,8 +83,8 @@ export default {
             location: '',
             imageUrl: '',
             description: '',
-            date: null,
-            time: null
+            date: new Date().toISOString().substr(0,10),
+            time: new Date()
         }
     },
     computed: {
