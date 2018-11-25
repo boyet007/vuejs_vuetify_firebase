@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer class="" v-model="sideNav" fixed>
+    <v-navigation-drawer temporary v-model="sideNav" fixed>
       <v-list>
         <v-list-tile v-for="item in menuItems"
           router :to="item.link"
