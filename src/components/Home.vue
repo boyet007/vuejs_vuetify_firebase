@@ -30,14 +30,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            meetups: [
-                { imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg', 
-                    id: '929jrfi2jijr', title: 'Find in New York' },
-                { imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/12/f8/66/ce/paris-in-one-day-sightseeing.jpg', 
-                    id: 'jifejifej3232', title: 'Find in Paris' },
-            ]
+    computed: {
+        meetups () {
+            return this.$store.getters.featuredMeetups
         }
     },
     methods: {

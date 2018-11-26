@@ -4,14 +4,14 @@
             <v-flex xs12>
                 <v-card>
                     <v-card-title>
-                        <h3 class="primary--text">My Meetup</h3>
+                        <h3 class="primary--text">{{ meetup.title }}</h3>
                     </v-card-title>
                     <v-img
-                        src="https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg"
+                        :src="meetup.imageUrl"
                         height="400px">
                     </v-img>
                     <v-card-text>
-                        <div class="info--text">17th July 2017 - Where it take place</div>
+                        <div class="info--text">{{ meetup.date }} - Where it take place</div>
                         <div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
                     </v-card-text>
                     <v-card-actions>
@@ -23,3 +23,15 @@
         </v-layout>
     </v-container>
 </template>
+
+<script>
+export default {
+    props: ['id'],
+    computed: {
+        meetup() {
+            return this.$store.getters.loadedMeetup(this.id)
+
+        }
+    }
+}
+</script>
