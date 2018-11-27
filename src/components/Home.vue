@@ -5,7 +5,7 @@
                 <v-btn large class="primary" router to="/meetups">Explore Meetups</v-btn>
             </v-flex>
             <v-flex xs12 sm6 class="text-sm-left text-xs-center">
-                <v-btn large class="primary" router to="/meetups/new">Organize Meetups</v-btn>
+                <v-btn large class="primary" router to="/meetup/new">Organize Meetups</v-btn>
             </v-flex>
         </v-layout>
         <v-layout row wrap class="mt-2">
