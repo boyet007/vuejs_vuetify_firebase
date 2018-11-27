@@ -10,12 +10,17 @@ export const store = new Vuex.Store ({
               imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg', 
               id: '929jrfi2jijr', 
               title: 'Find in New York',
-              date: '2017-07-18' 
+              date: new Date(),
+              location: 'New York',
+              description: 'New York, New York'
             },
             { imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/12/f8/66/ce/paris-in-one-day-sightseeing.jpg', 
               id: 'jifejifej3232', 
               title: 'Find in Paris',
-              date: '2017-07-17' 
+              date: new Date(),
+              location: 'Paris',
+              description: 'It\'s Paris!'
+
             }
         ],
         user: {

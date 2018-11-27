@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-                <h4 class="primary-text">Create a new Meetup</h4>
+                <h1 class="primary-text">Create a new Meetup</h1>
             </v-flex>
         </v-layout>
         <v-form @submit.prevent="onCreateMeetup">
@@ -41,6 +41,23 @@
             </v-layout>
             <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
+                    <h1>Choose a Date & Time</h1>
+                </v-flex>
+            </v-layout>
+            <v-layout row class="mb-2">
+                <v-flex xs12 sm6 offset-sm3>
+               <v-date-picker v-model="date">
+                   </v-date-picker>  
+                </v-flex>       
+            </v-layout>
+            <v-layout row>
+                <v-flex xs12 sm6 offset-sm3>
+               <v-time-picker v-model="time" format="24hr">
+                   </v-time-picker >
+                </v-flex>         
+            </v-layout>
+            <v-layout row>
+                <v-flex xs12 sm6 offset-sm3>
                     <v-btn type="submit" :disabled="!formIsValid" 
                     class="primary">Create Meetup</v-btn>
                 </v-flex>
@@ -56,7 +73,10 @@ export default {
             title: '',
             location: '',
             imageUrl: '',
-            description: ''
+            description: '',
+            date: new Date().toISOString().substring(0,10),
+            time: new Date()
+           
         }
     },
     computed: {
@@ -65,6 +85,20 @@ export default {
             this.location !== '' && 
             this.imageUrl !== '' &&
             this.description !== ''
+        },
+        submittableDateTime() {
+            const date = new Date(this.date)
+            if (typeof this.time === 'string') {
+                const hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+            } else {
+                date.setHours(this.time.getHours())
+                date.setHours(this.time.getMinutes())
+            }
+
+            return date
         }
     },
     methods: {
@@ -77,7 +111,7 @@ export default {
                 location: this.location,
                 imageUrl: this.imageUrl,
                 description: this.description,
-                date: new Date()
+                date: this.submittableDateTime
             }
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
