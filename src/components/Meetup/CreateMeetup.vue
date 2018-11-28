@@ -46,13 +46,13 @@
             </v-layout>
             <v-layout row class="mb-2">
                 <v-flex xs12 sm6 offset-sm3>
-               <v-date-picker v-model="date">
+               <v-date-picker v-model="date" dark>
                    </v-date-picker>  
                 </v-flex>       
             </v-layout>
             <v-layout row>
                 <v-flex xs12 sm6 offset-sm3>
-               <v-time-picker v-model="time" format="24hr">
+               <v-time-picker dark v-model="time" format="24hr">
                    </v-time-picker >
                 </v-flex>         
             </v-layout>
@@ -74,7 +74,7 @@ export default {
             location: '',
             imageUrl: '',
             description: '',
-            date: new Date().toISOString().substring(0,10),
+            date: new Date().toISOString().substr(0,10),
             time: new Date()
            
         }
@@ -88,14 +88,17 @@ export default {
         },
         submittableDateTime() {
             const date = new Date(this.date)
+           
             if (typeof this.time === 'string') {
-                const hours = this.time.match(/^(\d+)/)[1]
+                let hours = this.time.match(/^(\d+)/)[1]
                 const minutes = this.time.match(/:(\d+)/)[1]
                 date.setHours(hours)
                 date.setMinutes(minutes)
+           
             } else {
                 date.setHours(this.time.getHours())
-                date.setHours(this.time.getMinutes())
+                date.setMinutes(this.time.getMinutes())
+           
             }
 
             return date
