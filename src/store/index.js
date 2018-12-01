@@ -33,6 +33,9 @@ export const store = new Vuex.Store ({
         error: null
     },
     mutations: {
+        setLoadedMeetups (state, payload) {
+            state.loadedMeetups = payload
+        },
         createMeetup (state, payload) {
             state.loadedMeetups.push(payload);
         },
@@ -50,15 +53,49 @@ export const store = new Vuex.Store ({
         }
     },
     actions: {
+        loadMeetups({commit}) {
+            commit('setLoading', true)
+            firebase.database().ref('meetups').once('value')
+            .then((data) => {
+                const meetups = []
+                const obj = data.val()
+                for(let key in obj) {
+                    meetups.push({
+                        id: key,
+                        title: obj[key].title,
+                        description: obj[key].description,
+                        imageUrl: obj[key].imageUrl,
+                        date: obj[key].date
+                    })
+                }     
+                commit('setLoading', false)
+                commit('setLoadedMeetups', meetups) 
+            })
+            .catch((error)=>{
+                console.log(error)
+                commit('setLoading', false)
+            })
+        },
         createMeetup ({commit}, payload) {
             const meetup = {
                 title: payload.title,
                 location: payload.title,
                 imageUrl: payload.imageUrl,
                 description: payload.description,
-                date: payload.date,
-                id: 'jefijfeijefifej'
+                date: payload.date.toISOString()
             }
+            firebase.database().ref('meetups').push(meetup)
+            .then((data) => {
+                const key = data.key
+                commit('createMeetup', {
+                    //tambahkan id : key kedalam properties meetup
+                    ...meetup,
+                    id: key
+                })
+            })
+            .catch((error) => {
+                console.log(error)
+            })
             //reach out to fire base and store it
             commit('createMeetup', meetup)
         },
