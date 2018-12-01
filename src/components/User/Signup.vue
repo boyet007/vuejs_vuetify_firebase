@@ -54,9 +54,10 @@
 export default {
     data() {
         return {
-            email: '',
-            password: '',
-            confirmPassword: ''
+            email: 'siska@yahoo.com',
+            password: 'Wynne321',
+            confirmPassword: 'Wynne321',
+            loading: false
         }
     },
     computed: {
