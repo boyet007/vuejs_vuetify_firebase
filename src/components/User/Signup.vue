@@ -13,29 +13,52 @@
                             <form @submit.prevent="onSignup">
                                 <v-layout row>
                                     <v-flex xs12>
-                                        <v-text-field name="email" label="Mail" 
-                                        v-model="email" type="email" id="email" required>
-                                        </v-text-field>
+                                        <v-text-field 
+                                            name="email" 
+                                            label="Mail" 
+                                            id="email" 
+                                            v-model="email" 
+                                            type="email"
+                                            required></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row>
                                     <v-flex xs12>
-                                        <v-text-field name="password" label="Password" 
-                                        v-model="password" type="password" id="password" required>
-                                        </v-text-field>
+                                        <v-text-field 
+                                            name="password" 
+                                            label="Password" 
+                                            id="password" 
+                                            v-model="password" 
+                                            type="password"
+                                            required></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row>
                                     <v-flex xs12>
-                                        <v-text-field name="confirmPassword" label="Confirm Password" 
-                                        :rules="[comparePassword]" v-model="confirmPassword" type="password" id="confirmPassword">
-                                        </v-text-field>
+                                        <v-text-field 
+                                            name="confirmPassword" 
+                                            label="Confirm Password" 
+                                            id="confirmPassword" 
+                                            v-model="confirmPassword" 
+                                            type="password"
+                                            :rules="[comparePasswords]"
+                                            required></v-text-field>
                                     </v-flex>
                                 </v-layout>
                                 <v-layout row>
                                     <v-flex xs12>
-                                        <v-btn type="submit" :disabled="loading" :loading="loading">Sign up <span slot="loader" class="custom-loader">
-                                            <v-icon light>cached</v-icon></span></v-btn>
+                                        <v-btn 
+                                            type="submit" 
+                                            :disabled="loading" 
+                                            :loading="loading">
+                                            Sign Up
+                                        <span 
+                                            slot="loader" 
+                                            class="custom-loader">
+                                            <v-icon light>cached
+                                            </v-icon>
+                                        </span>
+                                        </v-btn>
                                     </v-flex>
                                 </v-layout>
                             </form>
@@ -46,24 +69,23 @@
         </v-layout>
     </v-container>
 </template>
-
 <script>
 export default {
     data() {
         return {
-            email: '',
-            password: '',
-            confirmPassword: ''
+            email: 'siska@yahoo.com',
+            password: 'Wynne321',
+            confirmPassword: 'Wynne321',
         }
     },
     computed: {
-        comparePassword: function() {
-            return this.password != this.confirmPassword ? 'Password do not match' : ''
+        comparePasswords() {
+            return this.password !== this.confirmPassword ? ' Password do not match' : ''
         },
-        user() {
+        user () {
             return this.$store.getters.user
         },
-        error() {
+        error () {
             return this.$store.getters.error
         },
         loading() {
@@ -71,19 +93,17 @@ export default {
         }
     },
     watch: {
-        user(value) {
+        user (value) {
             if (value !== null && value !== undefined) {
                 this.$router.push('/')
-            } 
+            }
         }
     },
     methods: {
-        onSignup: function() {
-            //console.log({email: this.email, password: this.password, confirmPassword: this.confirmPassword})
-            this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+        onSignup() { 
+            this.$store.dispatch('signUserUp', {email : this.email, password: this.password})
         },
         onDismissed() {
-            console.log('Dismissed Alert!')
             this.$store.dispatch('clearError')
         }
     }

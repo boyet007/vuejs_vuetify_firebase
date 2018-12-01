@@ -7,6 +7,7 @@ import Profile from '@/components/User/Profile'
 import Signup from '@/components/User/Signup'
 import Signin from '@/components/User/Signin'
 import Meetup from '@/components/Meetup/Meetup'
+import TestingLoader from '@/components/TestingLoader'
 
 Vue.use(Router)
 
@@ -20,15 +21,15 @@ export default new Router({
       component: Home
     },
     {
+      path: '/meetups',
+      name: 'Meetups',
+      component: Meetups
+    },
+    {
       path: '/meetups/:id',
       name: 'Meetup',
       props: true,
       component: Meetup
-    },
-    {
-      path: '/meetups',
-      name: 'Meetups',
-      component: Meetups
     },
     {
       path: '/meetup/new',
@@ -49,6 +50,11 @@ export default new Router({
       path: '/signin',
       name: 'Signin',
       component: Signin
+    },
+    {
+      path: '/testing-loader',
+      name: 'TestingLoader',
+      component: TestingLoader
     }
   ]
 })
