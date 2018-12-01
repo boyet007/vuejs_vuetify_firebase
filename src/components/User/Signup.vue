@@ -102,7 +102,6 @@ export default {
     methods: {
         onSignup() { 
             this.$store.dispatch('signUserUp', {email : this.email, password: this.password})
-            
         },
         onDismissed() {
             this.$store.dispatch('clearError')

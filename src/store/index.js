@@ -66,10 +66,10 @@ export const store = new Vuex.Store ({
             commit('setLoading', true)
             commit('clearError')
             firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-            .then(user => {
+            .then(resp => {
                 commit('setLoading', false)
                 const newUser = {
-                    id: user.uid,
+                    id: resp.user.uid,
                     registeredMeetups: []
                 }
                 commit('setUser', newUser)
@@ -84,11 +84,10 @@ export const store = new Vuex.Store ({
             commit('setLoading', true)
             commit('clearError')
             firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-            .then(user => {
-               
+            .then(resp => {
                 commit('setLoading', false)
                 const newUser = {
-                    id: user.uid,
+                    id: resp.user.uid,
                     registeredMeetups: []
                 }
                 commit('setUser', newUser)
@@ -123,7 +122,7 @@ export const store = new Vuex.Store ({
             return state.user
         },
         loading(state) {
-            return state.loadng
+            return state.loading
         },
         error (state) {
             return state.error
