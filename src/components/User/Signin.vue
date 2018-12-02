@@ -48,8 +48,8 @@
 export default {
     data() {
         return {
-            email: '',
-            password: ''
+            email: 'siska146@yahoo.com',
+            password: 'Wynne321'
         }
     },
     computed: {

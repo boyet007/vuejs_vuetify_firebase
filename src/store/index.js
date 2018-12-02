@@ -6,24 +6,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store ({
     state: {
-        loadedMeetups: [
-            { 
-              imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/0e/9a/e3/1d/freedom-tower.jpg', 
-              id: '929jrfi2jijr', 
-              title: 'Find in New York',
-              date: new Date(),
-              location: 'New York',
-              description: 'New York, New York'
-            },
-            { imageUrl: 'https://media-cdn.tripadvisor.com/media/photo-s/12/f8/66/ce/paris-in-one-day-sightseeing.jpg', 
-              id: 'jifejifej3232', 
-              title: 'Find in Paris',
-              date: new Date(),
-              location: 'Paris',
-              description: 'It\'s Paris!'
-
-            }
-        ],
+        loadedMeetups: [],
         // user: {
         //     id: 'jfeijefiejfei',
         //     registeredMeetups: ['jifejifej3232']
@@ -78,23 +61,43 @@ export const store = new Vuex.Store ({
             })
         },
         createMeetup ({commit, getters}, payload) {
+            let imageUrl
+            let key
+            
             const meetup = {
                 title: payload.title,
                 location: payload.title,
-                imageUrl: payload.imageUrl,
                 description: payload.description,
                 date: payload.date.toISOString(),
                 creatorId: getters.user.id
             }
+
             firebase.database().ref('meetups').push(meetup)
-            .then((data) => {
-                const key = data.key
-                commit('createMeetup', {
-                    //tambahkan id : key kedalam properties meetup
-                    ...meetup,
-                    id: key
+                .then((data) => {
+                    key = data.key   
+                    return key
                 })
-            })
+                .then(key => {
+                const filename = payload.image.name
+                const ext = filename.slice(filename.lastIndexOf('.'))
+                return firebase.storage().ref('meetups/' + key + ext).put(payload.image)
+                })
+                .then(fileData => {
+                    firebase.storage().ref(fileData.metadata.fullPath).getDownloadURL()
+                    .then((url) =>{
+                        imageUrl = url
+                        commit('createMeetup', {
+                            //tambahkan id : key kedalam properties meetup
+                            ...meetup,
+                            imageUrl: imageUrl,
+                            id: key  
+                        })
+                        return firebase.database().ref('meetups').child(key).update({imageUrl: url})
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    })
+                })
             .catch((error) => {
                 console.log(error)
             })
