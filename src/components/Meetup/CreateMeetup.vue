@@ -70,14 +70,13 @@
 export default {
     data() {
         return {
-            title: 'Liburan Bersama',
-            location: 'Jakarta',
+            title: '',
+            location: '',
             imageUrl: '',
-            description: 'Awesome Jakarta',
+            description: '',
             date: new Date().toISOString().substr(0,10),
             time: new Date(),
             image: null
-           
         }
     },
     computed: {
@@ -99,9 +98,7 @@ export default {
             } else {
                 date.setHours(this.time.getHours())
                 date.setMinutes(this.time.getMinutes())
-           
             }
-
             return date
         }
     },
@@ -120,6 +117,7 @@ export default {
                 description: this.description,
                 date: this.submittableDateTime
             }
+            console.log(meetupData)
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
         },

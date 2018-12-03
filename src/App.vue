@@ -9,8 +9,8 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile @click="onLogout" v-if="userIsAuthenticated">
-        <v-list-tile>
+        </v-list-tile>
+        <v-list-tile @click="onLogout" v-if="userIsAuthenticated">
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>
