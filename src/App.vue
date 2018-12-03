@@ -18,7 +18,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar dark class="cyan darken-3">
+    <v-toolbar dark class="brown darken-4" >
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav" class="hidden-sm-and-up">
       </v-toolbar-side-icon>
       <v-toolbar-title><router-link to="/" tag="span" style="cursor: pointer">DevMeetup</router-link></v-toolbar-title>

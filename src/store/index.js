@@ -127,7 +127,7 @@ export const store = new Vuex.Store ({
                 updateObj.description = payload.description
             }
             if (payload.date) {
-                updateObj.description = payload.date
+                updateObj.date = payload.date
             }
             firebase.database().ref('meetups').child(payload.id).update(updateObj)
             .then(()=>{
