@@ -1,3 +1,6 @@
 sampai : 
 Auth State Feeback with Vuex
 menit 15:39
+
+Register Meetup
+menit 23:08
